@@ -9,26 +9,20 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<Task> exampleTasks = [
-      Task(title: "Make a really good task app"),
-      Task(title: "Sell the app"),
-      Task(title: "Make much money"),
-      Task(title: "Make a really good task app"),
-      Task(title: "Sell the app"),
-      Task(title: "Make much money"),
-      Task(title: "Make a really good task app"),
-      Task(title: "Sell the app"),
-      Task(title: "Make much money"),
-      Task(title: "Make a really good task app"),
-      Task(title: "Sell the app"),
-      Task(title: "Make much money"),
-      Task(title: "Make a really good task app"),
-      Task(title: "Sell the app"),
-      Task(title: "Make much money"),
-      Task(title: "Make a really good task app"),
-      Task(title: "Sell the app"),
-      Task(title: "Make much money"),
-    ];
+    TaskManager taskManager = TaskManager(allTasks: [
+      Task(
+        title: "Make a really good task app",
+        scheduledTimes: [DateTime.now()],
+      ),
+      Task(
+        title: "Sell the app",
+        scheduledTimes: [DateTime.now()],
+      ),
+      Task(
+        title: "Make much money",
+        scheduledTimes: [DateTime.now().subtract(Duration(days: 1))],
+      ),
+    ]);
 
     return MaterialApp(
       title: 'Flutter Demo',
@@ -36,7 +30,7 @@ class MyApp extends StatelessWidget {
       home: Material(
         color: Colors.blue,
         child: Center(
-          child: TaskCard(tasks: exampleTasks),
+          child: TaskCard(tasks: taskManager.getTasksOnDay(DateTime.now())),
         ),
       ),
     );
